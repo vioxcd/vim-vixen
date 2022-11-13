@@ -1,3 +1,4 @@
+import consoleFrameStyle from "../site-style";
 export default interface ConsoleFramePresenter {
   attach(): void;
 
@@ -18,6 +19,10 @@ export class ConsoleFramePresenterImpl implements ConsoleFramePresenter {
     if (ele) {
       return;
     }
+
+    const style = window.document.createElement("style");
+    style.textContent = consoleFrameStyle;
+    window.document.head.appendChild(style);
 
     /* @ts-expect-error: The colorScheme property is not on the CSSStyleDeclaration type in TypeScript v4.3.5 */
     const colorScheme = getComputedStyle(document.body).colorScheme
